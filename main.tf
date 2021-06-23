@@ -6,7 +6,7 @@ module "app" {
 module "consent_service_postgres" {
   source            = "./lib/terraform-modules/rds-postgres"
   team              = "Foo"
-  identifier        = "consentservicepostgres"
+  identifier        = "App"
   instance_class    = "db.t3.small"
   allocated_storage = 20
   username          = "foo"
