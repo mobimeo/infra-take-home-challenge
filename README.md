@@ -16,7 +16,7 @@ Our here objective is to access the candidate's Knowledge about Kubernetes and T
 ## notes:
 - Your application should connect to a Postgres database to perform simple CRUD operations (GET, POST, DELETE) on a table.
 
-# todo:
+## todo:
 - Bootstrap EKS environment for candidates, so they can run terraform and deploy.
 - IAM User for candidate
 - Environment should be big enought to host Prometheus and Loki
