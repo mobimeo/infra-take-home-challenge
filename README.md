@@ -22,9 +22,7 @@ Our here objective is to access the candidate's Knowledge about Kubernetes and T
 - Bootstrap EKS environment for candidates, so they can run terraform and deploy.
   We would need this new enviroment to have EKS module with `cluster_endpoint_public_access = true`
 - Create IAM User for candidate
+- Can we have action runners so that the candidate can write a workflow?
 
 ## notes:
 - Environment should be only big enougth for stuff like Prometheus and Loki
-
-## dobuts:
-- Can we have action runners so that the candidate can write a workflow?
