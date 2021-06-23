@@ -19,4 +19,5 @@ Our here objective is to access the candidate's Knowledge about Kubernetes and T
 ## todo:
 - Bootstrap EKS environment for candidates, so they can run terraform and deploy.
 - IAM User for candidate
-- Environment should be big enought to host Prometheus and Loki
+- Can we use github hosted runners so that the candidate can write a workflow?
+- Environment should be big enougth for stuff like Prometheus and Loki
