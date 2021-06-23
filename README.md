@@ -20,6 +20,7 @@ Our here objective is to access the candidate's Knowledge about Kubernetes and T
 
 ## todo:
 - Bootstrap EKS environment for candidates, so they can run terraform and deploy.
+  We would need this new enviroment to have EKS module with `cluster_endpoint_public_access = true`
 - Create IAM User for candidate
 
 ## notes:
