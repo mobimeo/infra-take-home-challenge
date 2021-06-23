@@ -2,7 +2,7 @@
 
 Our here objective is to access the candidate's Knowledge about Kubernetes and Terraform.
 
-## task
+## tasks
 - Create a Terraform module to Deploy a basic application on the cluster.
 - Create a Terraform module to create a RDS Postgres database on AWS. This module should be usable by developers. 
   Therefore, It should contain sensible presets and documentation so they can use the module easily.
