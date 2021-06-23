@@ -1,0 +1,54 @@
+---
+name: module-app
+
+env:
+  AWS_REGION: eu-central-1
+
+on:
+  push:
+    branches-ignore:
+      - main
+    paths:
+      - lib/terraform-modules/app/**
+      - .github/workflows/module-app.yaml
+
+defaults:
+  run:
+    working-directory: lib/terraform-modules/app
+
+jobs:
+  terratest:
+    runs-on: ["self-hosted", "vld"]
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: setup terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0
+          terraform_wrapper: false
+
+      - run: terraform init
+      - run: terraform validate
+      - run: terraform fmt -diff -check
+      - name: setup Go 1.14
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.14
+        id: go
+
+      # go test
+      - name: go get dependencies for app
+        working-directory: lib/terraform-modules/app/test
+        run: |
+          if [ -f Gopkg.toml ]; then
+            curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+            dep ensure
+          else
+            go get -v -t -d ./...
+          fi
+      - name: go test app
+        working-directory: lib/terraform-modules/app/test
+        run: go test -v -vet=off -timeout=60m -p 1
+        timeout-minutes: 60

@@ -1,0 +1,2 @@
+- Bootstrap EKS environment for candidates, so they can run terraform and deploy.
+- Environment should be big enought to host Prometheus and Loki
