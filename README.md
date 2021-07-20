@@ -8,6 +8,8 @@ You might also be wondering where the K8s cluster is. This is also your challeng
 
 ## Tasks:
 
+- Fork this repo and submit your results as PR from your own Github account
+
 - Create a Kubernetes cluster with Terraform and any additional tooling/scripting of your choice or own devising. You can use any Kubernetes distro you like - minikube, kind, a Vagrantfile and some fancy `kubeadm` scripting, etc. If you want to use a public cloud, please use AWS. The objective here is to give us something we can run here at Mobimeo to review the rest of your work. And we don't have a GCP or an Azure account that we can use for this. We do have both Mac and Linux laptops.
 
 - Fill in the `app` Terraform module to Deploy a basic application on the cluster you created. This can be a simple 'hello world' container or a vanilla 'Welcome to nginx!' server. But if you find a cool containerized app to deploy, we appreciate creativity and exploration!
