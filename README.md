@@ -21,7 +21,7 @@ You might also be wondering where the K8s cluster is. This is also your challeng
 ## Additional Challenges
 Note: These are stretch goals for a junior or mid-level engineer. A candidate for a senior engineer or staff engineer position should consider at least some of these mandatory to be considered further.
 
-- Test your modules using Terratest https://terratest.gruntwork.io/
+- Test your module(s) using Terratest https://terratest.gruntwork.io/
 - Create a Terraform module to bootstrap a basic observability setup with Prometheus and Grafana.
 - Create a Terraform module to setup basic logging with Loki.
 - Replace your 'hello world' or 'welcome to nginx' app with something more complex, like a containerized sudoku webapp you may have found
