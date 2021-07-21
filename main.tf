@@ -1,6 +1,6 @@
 module "app" {
   source            = "./lib/terraform-modules/app"
-  namespace         = "app"
+  namespace         = "foo"
 }
 
 module "consent_service_postgres" {
