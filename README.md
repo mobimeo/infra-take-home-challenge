@@ -33,15 +33,15 @@ Note: These are stretch goals for a junior or mid-level engineer. A candidate fo
 - Implement the `postgres` module, a volume or two, and a CRUD app of your own devising. We use Python and Go in the infrastructure team. The company's APIs are written in Scala or Node.
 
 
-###NGINX Ingress Controller
+## Nginx Ingress Controller 
 
 
-###Overview
+## Overview
 ingress-nginx is an Ingress controller for Kubernetes using NGINX as a reverse proxy and load balancer.
 
 
 
-####Get started steps
+## Getting Started 
 
 
 1) Setup Terraform Locally and started with building AWS EKS Cluster with Terraform
@@ -55,7 +55,7 @@ ingress-nginx is an Ingress controller for Kubernetes using NGINX as a reverse p
 7) Modified templates files and values.yaml for the service deployment
 8) deployed the service and "Welcome to Nginx" sample application working fine locally
 
-####Sucess:
+## Success
 
 pankajmotwani@DE-MAC-20010 app % helm install my-release app
 NAME: my-release
@@ -70,14 +70,14 @@ NOTES:
   echo "Visit http://127.0.0.1:8080 to use your application"
   kubectl --namespace default port-forward $POD_NAME 8080:$CONTAINER_PORT
 
-####Failure in Deploying Ingress :
+## Failure in Deploying Ingress with Helm
 
 helm install my-release -f values.yaml .
 
 Error: template: mobimeo/templates/ingress.yaml:40:30: executing "mobimeo/templates/ingress.yaml" at <include "app.fullname" .>: error calling include: template: mobimeo/templates/_helpers.tpl:14:14: executing "app.fullname" at <.Values.fullnameOverride>: nil pointer evaluating interface {}.fullnameOverride
 
 
-####Troubleshooting
+## Trouleshooting
 
 1) After creating EKS Module , were having some issues in running EKS Nodes in AWS Account , decided to go with Minikune but the issue is related to configmap.yaml file , need to add an additional user to connect to the cluster with Kubectl
 due to lack of time started with Minikube
@@ -88,8 +88,7 @@ values and running a new release after adding Ingress variables is throwing belo
 helm install my-release -f values.yaml .
 
 Error: template: mobimeo/templates/ingress.yaml:40:30: executing "mobimeo/templates/ingress.yaml" at <include "app.fullname" .>: error calling include: template: mobimeo/templates/_helpers.tpl:14:14: executing "app.fullname" at <.Values.fullnameOverride>: nil pointer evaluating interface {}.fullnameOverride
-
-###NOTES/Comments
+## Notes and Comments 
 
 1) Thank you Mobimeo for the opportunity and the assignment
 2) Previosly worked on straight K8s deployment but never worked with helm
