@@ -3,6 +3,11 @@ module "app" {
   namespace         = "app"
 }
 
+module "app" {
+  source            = "./lib/terraform-modules/provision-eks-cluster"
+  namespace         = "app"
+}
+
 module "consent_service_postgres" {
   source            = "./lib/terraform-modules/rds-postgres"
   team              = "Foo"

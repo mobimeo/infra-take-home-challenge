@@ -13,6 +13,8 @@ terraform {
     }
   }
 
+
+
   #backend "s3" {
     #region         = "eu-central-1"
     #bucket         = "mobimeo-app-terraform-state"
@@ -20,9 +22,24 @@ terraform {
   #}
 }
 
-#provider "aws" {
-  #region = "eu-central-1"
-#}
+provider "aws" {
+  region     = "eu-west-1"
+# Created aws profile test-kube locally , exported test-kube awsd profile and referring here to pass the aws provider creds #
+# We can also pass the credentials with Environment variables, used both the method #
+# profile = "test-kube"
+  access_key = var.AWS_ACCESS_KEY_ID
+  secret_key = var.AWS_SECRET_ACCESS_KEY
+}
+
+variable "AWS_ACCESS_KEY_ID" {
+  type      = string
+  sensitive = true
+}
+
+variable "AWS_SECRET_ACCESS_KEY" {
+  type      = string
+  sensitive = true
+}
 
 #data "aws_eks_cluster" "cluster" {
   #name = module.cluster.eks_id
