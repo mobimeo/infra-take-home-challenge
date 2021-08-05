@@ -1,5 +1,5 @@
 terraform {
-  required_version = "= 1.0"
+  required_version = ">=0.13"
 
   required_providers {
     aws = {
@@ -31,6 +31,16 @@ provider "aws" {
   secret_key = var.AWS_SECRET_ACCESS_KEY
 }
 
+
+
+#data "aws_eks_cluster" "cluster" {
+  #name = module.cluster.eks_id
+#}
+
+#data "aws_eks_cluster_auth" "cluster" {
+  #name = module.cluster.eks_id
+#}
+
 variable "AWS_ACCESS_KEY_ID" {
   type      = string
   sensitive = true
@@ -41,24 +51,18 @@ variable "AWS_SECRET_ACCESS_KEY" {
   sensitive = true
 }
 
-#data "aws_eks_cluster" "cluster" {
-  #name = module.cluster.eks_id
-#}
 
-#data "aws_eks_cluster_auth" "cluster" {
-  #name = module.cluster.eks_id
-#}
 
-#provider "kubernetes" {
-  #host                   = data.aws_eks_cluster.cluster.endpoint
-  #cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
-  #token                  = data.aws_eks_cluster_auth.cluster.token
-#}
+provider "kubernetes" {
+  host                   = data.aws_eks_cluster.cluster.endpoint
+  token                  = data.aws_eks_cluster_auth.cluster.token
+  cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
+}
 
-#provider "helm" {
-  #kubernetes {
-    #host                   = data.aws_eks_cluster.cluster.endpoint
-    #cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
-    #token                  = data.aws_eks_cluster_auth.cluster.token
-  #}
-#}
+provider "helm" {
+  kubernetes {
+    host                   = data.aws_eks_cluster.cluster.endpoint
+    cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
+    token                  = data.aws_eks_cluster_auth.cluster.token
+  }
+}
