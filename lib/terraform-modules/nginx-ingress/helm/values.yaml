@@ -1,0 +1,15 @@
+controller:
+  watchIngressWithoutClass: true
+  hostPort:
+    enabled: true
+  publishService:
+    enabled: true
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+  service:
+    external:
+      enabled: false
+  extraArgs:
+    publish-status-address: localhost

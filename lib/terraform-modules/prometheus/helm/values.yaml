@@ -1,0 +1,24 @@
+grafana:
+  ingress:
+    enabled: true
+    path: /grafana/
+  grafana.ini:
+    server:
+      root_url: http://localhost/grafana
+      serve_from_sub_path: true
+  additionalDataSources:
+  - name: loki
+    type: loki
+    access: server
+    url: http://loki.logging:3100
+
+prometheus:
+  prometheusSpec:
+    ruleSelectorNilUsesHelmValues: false
+    serviceMonitorSelectorNilUsesHelmValues: false
+
+kubeEtcd:
+  enabled: false
+
+
+
