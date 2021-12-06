@@ -1,0 +1,11 @@
+image:
+  repository: hashicorp/http-echo
+  tag: 0.2.3
+  pullPolicy: IfNotPresent
+ingress:
+  enabled: true
+  hosts:
+    - paths:
+      - /app
+extraArgs:
+  text: "Hello Mobimeo"

@@ -1,5 +1,5 @@
 terraform {
-  required_version = "= 1.0"
+  required_version = ">= 1.0"
 
   required_providers {
     aws = {
@@ -11,37 +11,34 @@ terraform {
     helm = {
       version = "2.1.2"
     }
+    kind = {
+      source  = "kyma-incubator/kind"
+      version = "0.0.11"
+    }
+    grafana = {
+      source  = "grafana/grafana"
+      version = "1.16.0"
+    }
   }
-
-  #backend "s3" {
-    #region         = "eu-central-1"
-    #bucket         = "mobimeo-app-terraform-state"
-    #key            = "terraform.tfstate"
-  #}
 }
 
-#provider "aws" {
-  #region = "eu-central-1"
-#}
+provider "kubernetes" {
+  host                   = module.kind_cluster.endpoint
+  client_key             = module.kind_cluster.client_key
+  client_certificate     = module.kind_cluster.client_certificate
+  cluster_ca_certificate = module.kind_cluster.cluster_ca_certificate
+}
 
-#data "aws_eks_cluster" "cluster" {
-  #name = module.cluster.eks_id
-#}
+provider "helm" {
+  kubernetes {
+    host                   = module.kind_cluster.endpoint
+    client_key             = module.kind_cluster.client_key
+    client_certificate     = module.kind_cluster.client_certificate
+    cluster_ca_certificate = module.kind_cluster.cluster_ca_certificate
+  }
+}
 
-#data "aws_eks_cluster_auth" "cluster" {
-  #name = module.cluster.eks_id
-#}
-
-#provider "kubernetes" {
-  #host                   = data.aws_eks_cluster.cluster.endpoint
-  #cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
-  #token                  = data.aws_eks_cluster_auth.cluster.token
-#}
-
-#provider "helm" {
-  #kubernetes {
-    #host                   = data.aws_eks_cluster.cluster.endpoint
-    #cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
-    #token                  = data.aws_eks_cluster_auth.cluster.token
-  #}
-#}
+provider "grafana" {
+  url  = "http://localhost/grafana"
+  auth = "admin:${local.grafana_admin_password}"
+}
