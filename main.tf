@@ -3,6 +3,11 @@ module "app" {
   namespace         = "app"
 }
 
+module "loki" {
+  source            = "./lib/terraform-modules/loki"
+  namespace         = "logging"
+}
+
 locals {
   cluster_name = "mobimeo-infra-the-kubernetes"
 }
