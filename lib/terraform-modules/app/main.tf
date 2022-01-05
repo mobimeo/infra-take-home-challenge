@@ -12,6 +12,7 @@ resource "helm_release" "app" {
   version    = "0.0.1"
 
   values = [
-    file("${path.module}/helm/values.yaml")
+    file("${path.module}/helm/values.yaml"),
+    file("${path.module}/helm/service.yaml"),
   ]
 }
